@@ -46,13 +46,15 @@ function DepthPlane() {
         varying vec2 vUv;
 
         void main() {
-          // Cover-style: image fills viewport while maintaining aspect ratio
+          // Cover-style: scale < 1 so we zoom into the image center, no edge clamping
           float viewAspect = uResolution.x / uResolution.y;
           vec2 scale = vec2(1.0);
           if (viewAspect > uImageAspect) {
-            scale.y = viewAspect / uImageAspect;
+            // viewport wider than image — fill width, crop height
+            scale.y = uImageAspect / viewAspect;
           } else {
-            scale.x = uImageAspect / viewAspect;
+            // viewport narrower than image (portrait) — fill height, crop width
+            scale.x = viewAspect / uImageAspect;
           }
           vec2 coveredUv = (vUv - 0.5) * scale + 0.5;
 

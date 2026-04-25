@@ -51,7 +51,7 @@ function OverlaySection({
 }) {
   return (
     <section id={id} className="relative z-10 min-h-screen flex items-center overflow-hidden">
-      <div style={{ width: '1900px', marginInline: 'auto', paddingLeft: 'clamp(48px, 8vw, 180px)', paddingRight: 'clamp(48px, 8vw, 180px)' }}>
+      <div style={{ width: '100%', maxWidth: '1900px', marginInline: 'auto', paddingLeft: 'clamp(20px, 6vw, 180px)', paddingRight: 'clamp(20px, 6vw, 180px)', paddingTop: '80px', paddingBottom: '80px' }}>
         {children}
       </div>
     </section>
@@ -59,6 +59,13 @@ function OverlaySection({
 }
 
 function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navLinks = [
+    { href: '#services', label: 'Services' },
+    { href: '#projects', label: 'Projets' },
+    { href: '#process', label: 'Approche' },
+    { href: '#contact', label: 'Contact' },
+  ];
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-5 md:px-8">
       <div
@@ -73,15 +80,14 @@ function SiteHeader() {
           </span>
         </div>
 
-        {/* Nav — true centre */}
+        {/* Nav — desktop */}
         <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
-          <a href="#services" className="whitespace-nowrap hover:text-white transition-colors">Services</a>
-          <a href="#projects" className="whitespace-nowrap hover:text-white transition-colors">Projets</a>
-          <a href="#process" className="whitespace-nowrap hover:text-white transition-colors">Approche</a>
-          <a href="#contact" className="whitespace-nowrap hover:text-white transition-colors">Contact</a>
+          {navLinks.map((l) => (
+            <a key={l.href} href={l.href} className="whitespace-nowrap hover:text-white transition-colors">{l.label}</a>
+          ))}
         </nav>
 
-        {/* CTA */}
+        {/* CTA / hamburger */}
         <div className="absolute right-5 flex items-center md:right-7">
           <a
             href="#contact"
@@ -93,13 +99,40 @@ function SiteHeader() {
             Rendez-vous
           </a>
           <button
+            onClick={() => setMenuOpen((o) => !o)}
             className="flex h-10 w-10 items-center justify-center rounded-full
                        border border-white/15 text-xs text-white md:hidden"
           >
-            Menu
+            {menuOpen ? '✕' : '☰'}
           </button>
         </div>
       </div>
+
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <div className="mt-2 mx-auto max-w-[1900px] rounded-[24px] border border-white/15 bg-black/80 backdrop-blur-xl md:hidden"
+          style={{ padding: '8px' }}>
+          {navLinks.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setMenuOpen(false)}
+              className="block rounded-[18px] text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+              style={{ padding: '14px 20px' }}
+            >
+              {l.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+            className="mt-1 block rounded-full bg-[#d5b46b] text-center text-sm font-semibold text-black"
+            style={{ padding: '14px 20px' }}
+          >
+            Rendez-vous
+          </a>
+        </div>
+      )}
     </header>
   );
 }
@@ -177,6 +210,7 @@ export default function Page() {
   const mainRef = useRef<HTMLElement>(null);
   const statCountRef = useRef<HTMLSpanElement>(null);
   const [previewSrc, setPreviewSrc] = useState<string | null>(null);
+  const [tappedProcess, setTappedProcess] = useState<number | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -238,23 +272,23 @@ export default function Page() {
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <OverlaySection id="hero">
-        <div className="section-content max-w-[680px] pt-20 text-center">
+        <div className="section-content max-w-[680px] mx-auto pt-20 text-center">
           <p className="eyebrow">JARDINS &amp; TERRASSES D'EXCEPTION</p>
 
           <h1 className="headline-xl" style={{ maxWidth: '100%' }}>
             Des extérieurs pensés comme des lieux de vie.
           </h1>
 
-          <p className="body-copy whitespace-nowrap" style={{ maxWidth: '100%' }}>
+          <p className="body-copy" style={{ maxWidth: '100%' }}>
             Terrasses en pierre, jardins paysagers et espaces outdoor haut de gamme.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <MagneticButton>
-              <button className={btnPrimary} style={{ minWidth: '220px', paddingInline: '52px' }}>Découvrir les projets</button>
+              <button className={btnPrimary} style={{ paddingInline: '52px' }}>Découvrir les projets</button>
             </MagneticButton>
             <MagneticButton>
-              <a href="#contact" className={btnSecondary} style={{ minWidth: '200px', paddingInline: '52px' }}>Nous contacter</a>
+              <a href="#contact" className={btnSecondary} style={{ paddingInline: '52px' }}>Nous contacter</a>
             </MagneticButton>
           </div>
 
@@ -327,7 +361,7 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="mt-12 flex items-start gap-10">
+          <div className="mt-12 flex flex-col md:flex-row items-start gap-6 md:gap-10">
             {/* Card list */}
             <div className="flex-1 space-y-4">
               {PROJECT_CARDS.map((c) => (
@@ -354,7 +388,7 @@ export default function Page() {
 
             {/* Static preview panel */}
             <div
-              className="w-[400px] shrink-0 overflow-hidden rounded-[18px] shadow-2xl transition-opacity duration-300"
+              className="hidden md:block w-[400px] shrink-0 overflow-hidden rounded-[18px] shadow-2xl transition-opacity duration-300"
               style={{ height: 420, opacity: previewSrc ? 1 : 0 }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -380,8 +414,12 @@ export default function Page() {
           </div>
 
           <div className="mt-12 grid gap-5 md:grid-cols-2 stagger-cards">
-            {PROCESS_STEPS.map((s) => (
-              <div key={s.num} className="process-card flip-card" style={{ height: 190 }}>
+            {PROCESS_STEPS.map((s, i) => (
+              <div
+                key={s.num}
+                className={`process-card flip-card${tappedProcess === i ? ' tapped' : ''}`}
+                onClick={() => setTappedProcess(tappedProcess === i ? null : i)}
+              >
                 <div className="flip-card-inner">
                   {/* front */}
                   <div className="flip-card-front glass-card text-center flex flex-col items-center justify-center" style={{ padding: '24px' }} onMouseMove={onCardMove}>

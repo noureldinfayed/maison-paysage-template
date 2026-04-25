@@ -371,6 +371,7 @@ export default function Page() {
                   style={{ padding: '20px' }}
                   onMouseEnter={() => setPreviewSrc(c.image)}
                   onMouseLeave={() => setPreviewSrc(null)}
+                  onClick={() => setPreviewSrc(prev => prev === c.image ? null : c.image)}
                 >
                   <span className="w-9 shrink-0 font-display text-xl font-semibold text-[#d5b46b]">
                     {c.num}
@@ -386,7 +387,20 @@ export default function Page() {
               ))}
             </div>
 
-            {/* Static preview panel */}
+            {/* Mobile preview — expands below card list on tap */}
+            <div
+              className="md:hidden w-full shrink-0 overflow-hidden rounded-[18px] shadow-2xl"
+              style={{
+                height: previewSrc ? 260 : 0,
+                opacity: previewSrc ? 1 : 0,
+                transition: 'height 0.4s ease, opacity 0.4s ease',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={previewSrc ?? ''} alt="" className="h-full w-full object-cover" />
+            </div>
+
+            {/* Desktop preview panel */}
             <div
               className="hidden md:block w-[400px] shrink-0 overflow-hidden rounded-[18px] shadow-2xl transition-opacity duration-300"
               style={{ height: 420, opacity: previewSrc ? 1 : 0 }}

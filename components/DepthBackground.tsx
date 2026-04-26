@@ -30,29 +30,29 @@ export default function DepthBackground() {
     const schedule = () => { if (!rafId) rafId = requestAnimationFrame(tick); };
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseX = (e.clientX / innerWidth  - 0.5) * -44;
-      mouseY = (e.clientY / innerHeight - 0.5) * -28;
+      mouseX = (e.clientX / innerWidth  - 0.5) * -68;
+      mouseY = (e.clientY / innerHeight - 0.5) * -44;
       schedule();
     };
 
     const onTouchMove = (e: TouchEvent) => {
       const t = e.touches[0];
-      mouseX = (t.clientX / innerWidth  - 0.5) * -44;
-      mouseY = (t.clientY / innerHeight - 0.5) * -28;
+      mouseX = (t.clientX / innerWidth  - 0.5) * -68;
+      mouseY = (t.clientY / innerHeight - 0.5) * -44;
       schedule();
     };
 
     const onOrientation = (e: DeviceOrientationEvent) => {
       if (e.gamma != null && e.beta != null) {
-        mouseX = Math.max(-1, Math.min(1, e.gamma / 30)) * -44;
-        mouseY = Math.max(-1, Math.min(1, (e.beta - 30) / 30)) * -28;
+        mouseX = Math.max(-1, Math.min(1, e.gamma / 30)) * -68;
+        mouseY = Math.max(-1, Math.min(1, (e.beta - 30) / 30)) * -44;
         schedule();
       }
     };
 
     const onScroll = () => {
       const progress = scrollY / Math.max(1, document.body.scrollHeight - innerHeight);
-      scrollShift = progress * -65;
+      scrollShift = progress * -100;
       schedule();
     };
 
@@ -73,7 +73,7 @@ export default function DepthBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
       {/* Oversized by 6% on each side so edge never shows during parallax pan */}
-      <div ref={layerRef} style={{ position: 'absolute', inset: '-9%', willChange: 'transform' }}>
+      <div ref={layerRef} style={{ position: 'absolute', inset: '-13%', willChange: 'transform' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/terrace/main.jpg"

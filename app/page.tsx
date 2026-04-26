@@ -1,9 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import DepthBackground from '@/components/DepthBackground';
+
+const DepthBackground = dynamic(() => import('@/components/DepthBackground'), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 -z-10 bg-black" />,
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -142,11 +148,11 @@ function SiteHeader() {
 const MARQUEE_TEXT = 'JARDINS · TERRASSES · PAYSAGE · LUMIÈRE · PIERRE NATURELLE · ESPACES OUTDOOR · ';
 
 function Marquee() {
-  const cls = 'text-[11px] font-semibold tracking-[0.32em] text-white/25 whitespace-nowrap';
+  const cls = 'text-[11px] font-semibold tracking-[0.32em] text-white/50 whitespace-nowrap';
   return (
-    <div className="relative z-10 overflow-hidden border-y border-white/[0.08] py-[13px]">
+    <div className="relative z-10 overflow-hidden border-y border-white/[0.08] py-[13px]" aria-hidden="true">
       <div className="marquee-track">{/* no whitespace between spans */
-        }{[0,1,2,3].map((i) => <span key={i} className={cls} aria-hidden={i > 0}>{MARQUEE_TEXT}</span>)
+        }{[0,1,2,3].map((i) => <span key={i} className={cls}>{MARQUEE_TEXT}</span>)
       }</div>
     </div>
   );
@@ -322,12 +328,13 @@ export default function Page() {
               <div key={c.title} className="glass-card overflow-hidden text-center" onMouseMove={onCardMove}>
                 <div className="card-spotlight" style={{ background: 'radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(213,180,107,0.13), transparent 70%)' }} />
                 {/* image thumbnail */}
-                <div className="h-44 w-full overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="relative h-44 w-full overflow-hidden">
+                  <Image
                     src={c.image}
                     alt={c.title}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    fill
+                    sizes="(max-width:768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 ease-out"
                   />
                 </div>
                 {/* content */}
@@ -444,8 +451,13 @@ export default function Page() {
                   </div>
                   {/* back */}
                   <div className="flip-card-back">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={s.image} alt={s.title} className="h-full w-full object-cover" />
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      sizes="(max-width:768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
                     <div className="absolute inset-0 bg-black/40 flex items-end" style={{ padding: '20px 24px' }}>
                       <div className="w-full overflow-hidden">
                         <p className="text-xs font-semibold tracking-[0.22em] text-[#d5b46b] mb-1">{s.num}</p>

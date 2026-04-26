@@ -6,10 +6,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const DepthBackground = dynamic(() => import('@/components/DepthBackground'), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 -z-10 bg-black" />,
-});
+const DepthBackground = dynamic(() => import('@/components/DepthBackground'), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -273,6 +270,9 @@ export default function Page() {
 
   return (
     <main ref={mainRef} className="relative min-h-screen overflow-x-hidden text-white">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/terrace/main.jpg" alt="" aria-hidden="true"
+        className="fixed inset-0 -z-10 h-full w-full object-cover object-center" />
       <DepthBackground />
       <SiteHeader />
 

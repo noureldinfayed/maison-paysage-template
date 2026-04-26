@@ -131,10 +131,8 @@ function DepthPlane() {
 
 export default function DepthBackground() {
   return (
-    <div className="fixed inset-0 -z-10">
-      <Canvas frameloop="demand" gl={{ antialias: true, alpha: true }}
-        onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
-        camera={{ position: [0, 0, 1], fov: 75 }}>
+    <div className="fixed inset-0 -z-10 bg-black">
+      <Canvas frameloop="demand" gl={{ antialias: true, alpha: false }} camera={{ position: [0, 0, 1], fov: 75 }}>
         <DepthPlane />
       </Canvas>
       <div className="pointer-events-none absolute inset-0 hidden md:block"

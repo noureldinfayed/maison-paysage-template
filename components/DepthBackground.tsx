@@ -18,8 +18,8 @@ export default function DepthBackground() {
     function tick() {
       rafId = 0;
       if (!el) return;
-      cx = lerp(cx, mouseX, 0.06);
-      cy = lerp(cy, mouseY + scrollShift, 0.06);
+      cx = lerp(cx, mouseX, 0.08);
+      cy = lerp(cy, mouseY + scrollShift, 0.08);
       el.style.transform = `translate(${cx.toFixed(2)}px,${cy.toFixed(2)}px)`;
       const converged =
         Math.abs(mouseX - cx) < 0.1 &&
@@ -30,29 +30,29 @@ export default function DepthBackground() {
     const schedule = () => { if (!rafId) rafId = requestAnimationFrame(tick); };
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseX = (e.clientX / innerWidth  - 0.5) * -24;
-      mouseY = (e.clientY / innerHeight - 0.5) * -14;
+      mouseX = (e.clientX / innerWidth  - 0.5) * -44;
+      mouseY = (e.clientY / innerHeight - 0.5) * -28;
       schedule();
     };
 
     const onTouchMove = (e: TouchEvent) => {
       const t = e.touches[0];
-      mouseX = (t.clientX / innerWidth  - 0.5) * -24;
-      mouseY = (t.clientY / innerHeight - 0.5) * -14;
+      mouseX = (t.clientX / innerWidth  - 0.5) * -44;
+      mouseY = (t.clientY / innerHeight - 0.5) * -28;
       schedule();
     };
 
     const onOrientation = (e: DeviceOrientationEvent) => {
       if (e.gamma != null && e.beta != null) {
-        mouseX = Math.max(-1, Math.min(1, e.gamma / 30)) * -24;
-        mouseY = Math.max(-1, Math.min(1, (e.beta - 30) / 30)) * -14;
+        mouseX = Math.max(-1, Math.min(1, e.gamma / 30)) * -44;
+        mouseY = Math.max(-1, Math.min(1, (e.beta - 30) / 30)) * -28;
         schedule();
       }
     };
 
     const onScroll = () => {
       const progress = scrollY / Math.max(1, document.body.scrollHeight - innerHeight);
-      scrollShift = progress * -35;
+      scrollShift = progress * -65;
       schedule();
     };
 
@@ -73,7 +73,7 @@ export default function DepthBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
       {/* Oversized by 6% on each side so edge never shows during parallax pan */}
-      <div ref={layerRef} style={{ position: 'absolute', inset: '-6%', willChange: 'transform' }}>
+      <div ref={layerRef} style={{ position: 'absolute', inset: '-9%', willChange: 'transform' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/terrace/main.jpg"

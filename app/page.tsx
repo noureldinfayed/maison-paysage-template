@@ -1,15 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-const DepthBackground = dynamic(() => import('@/components/DepthBackground'), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 -z-10 bg-black" />,
-});
+import DepthBackground from '@/components/DepthBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 

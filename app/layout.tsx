@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
-import LenisProvider from '@/components/ui/LenisProvider'
 import './globals.css'
 
 const displayFont = Cormorant_Garamond({
@@ -37,8 +36,11 @@ export default function RootLayout({
       lang="fr"
       className={`${displayFont.variable} ${bodyFont.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preload" href="/terrace/main.jpg" as="image" />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground font-body">
-        <LenisProvider>{children}</LenisProvider>
+        {children}
         {process.env.VERCEL === '1' && <Analytics />}
       </body>
     </html>

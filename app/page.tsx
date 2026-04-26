@@ -278,7 +278,7 @@ export default function Page() {
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <OverlaySection id="hero">
-        <div className="section-content max-w-[680px] mx-auto pt-20 text-center">
+        <div className="hero-content max-w-[680px] mx-auto pt-20 text-center">
           <p className="eyebrow">JARDINS &amp; TERRASSES D'EXCEPTION</p>
 
           <h1 className="headline-xl" style={{ maxWidth: '100%' }}>

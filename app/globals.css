@@ -41,7 +41,7 @@
    ============================================================ */
 html,
 body {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* replaces Lenis */
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
 }
@@ -245,6 +245,15 @@ body {
 .process-card.process-active .process-num {
   color: #d5b46b;
   letter-spacing: 0.22em;
+}
+
+/* Hero entrance — translate only, never opacity-0, so LCP is immediate */
+@keyframes heroReveal {
+  from { transform: translateY(24px); }
+  to   { transform: translateY(0); }
+}
+.hero-content {
+  animation: heroReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ============================================================

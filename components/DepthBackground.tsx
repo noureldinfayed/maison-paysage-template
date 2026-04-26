@@ -29,10 +29,7 @@ function DepthPlane() {
       },
       vertexShader: `
         varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = vec4(position, 1.0);
-        }
+        void main() { vUv = uv; gl_Position = vec4(position, 1.0); }
       `,
       fragmentShader: `
         uniform sampler2D uTexture;
@@ -47,11 +44,8 @@ function DepthPlane() {
         void main() {
           float viewAspect = uResolution.x / uResolution.y;
           vec2 scale = vec2(1.0);
-          if (viewAspect > uImageAspect) {
-            scale.y = uImageAspect / viewAspect;
-          } else {
-            scale.x = viewAspect / uImageAspect;
-          }
+          if (viewAspect > uImageAspect) { scale.y = uImageAspect / viewAspect; }
+          else                           { scale.x = viewAspect / uImageAspect; }
           vec2 coveredUv = (vUv - 0.5) * scale + 0.5;
 
           float depth = texture2D(uDepth, coveredUv).r;
@@ -73,23 +67,19 @@ function DepthPlane() {
     if (colorMap.image?.width && colorMap.image?.height) {
       material.uniforms.uImageAspect.value = colorMap.image.width / colorMap.image.height;
     }
-    // Trigger first render
     invalidate();
 
-    // Desktop mouse parallax
     const onMouseMove = (e: MouseEvent) => {
       target.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
       target.current.y = -(e.clientY / window.innerHeight - 0.5) * 2;
       invalidate();
     };
-    // Mobile touch drag parallax
     const onTouchMove = (e: TouchEvent) => {
       const t = e.touches[0];
       target.current.x = (t.clientX / window.innerWidth - 0.5) * 2;
       target.current.y = -(t.clientY / window.innerHeight - 0.5) * 2;
       invalidate();
     };
-    // Mobile gyroscope parallax
     const onOrientation = (e: DeviceOrientationEvent) => {
       if (e.gamma != null && e.beta != null) {
         target.current.x = Math.max(-1, Math.min(1, e.gamma / 30));
@@ -103,14 +93,8 @@ function DepthPlane() {
     window.addEventListener('deviceorientation', onOrientation);
 
     const trigger = ScrollTrigger.create({
-      trigger: document.body,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true,
-      onUpdate: self => {
-        target.current.scroll = self.progress;
-        invalidate();
-      },
+      trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true,
+      onUpdate: self => { target.current.scroll = self.progress; invalidate(); },
     });
 
     return () => {
@@ -130,7 +114,6 @@ function DepthPlane() {
     material.uniforms.uScroll.value = current.current.scroll;
     material.uniforms.uResolution.value.set(size.width, size.height);
 
-    // Keep rendering until lerp converges, then stop
     const converged =
       Math.abs(target.current.x      - current.current.x)      < 0.0005 &&
       Math.abs(target.current.y      - current.current.y)      < 0.0005 &&
@@ -149,25 +132,16 @@ function DepthPlane() {
 export default function DepthBackground() {
   return (
     <div className="fixed inset-0 -z-10 bg-black">
-      {/* frameloop="demand": canvas only renders on mouse/scroll events, never idles */}
       <Canvas frameloop="demand" gl={{ antialias: true, alpha: false }} camera={{ position: [0, 0, 1], fov: 75 }}>
         <DepthPlane />
       </Canvas>
-
-      {/* Desktop: left-to-right gradient */}
-      <div
-        className="pointer-events-none absolute inset-0 hidden md:block"
-        style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.56) 38%, rgba(0,0,0,0.12) 72%, rgba(0,0,0,0) 100%)' }}
-      />
-      {/* Mobile: radial centre vignette */}
-      <div
-        className="pointer-events-none absolute inset-0 md:hidden"
-        style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.72) 100%)' }}
-      />
-      {/* Global veil */}
+      <div className="pointer-events-none absolute inset-0 hidden md:block"
+        style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.56) 38%, rgba(0,0,0,0.12) 72%, rgba(0,0,0,0) 100%)' }} />
+      <div className="pointer-events-none absolute inset-0 md:hidden"
+        style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.72) 100%)' }} />
       <div className="pointer-events-none absolute inset-0 bg-black/15" />
-      {/* Bottom vignette */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55), transparent)' }} />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48"
+        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55), transparent)' }} />
     </div>
   );
 }

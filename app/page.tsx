@@ -51,7 +51,7 @@ function OverlaySection({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="relative z-10 min-h-screen flex items-center overflow-hidden">
+    <section id={id} className="relative z-10 min-h-screen flex items-center overflow-x-hidden">
       <div style={{ width: '100%', maxWidth: '1900px', marginInline: 'auto', paddingLeft: 'clamp(20px, 6vw, 180px)', paddingRight: 'clamp(20px, 6vw, 180px)', paddingTop: '80px', paddingBottom: '80px' }}>
         {children}
       </div>

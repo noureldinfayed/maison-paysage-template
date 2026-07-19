@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Paysage — Documentation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #ffffff;
+      color: #2d2d2d;
+      line-height: 1.8;
+      padding: 60px 24px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      margin-top: 56px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f0ebe0;
+    }
+    h2 .num {
+      color: #C9A84C;
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 1.15rem;
+      color: #1a1a1a;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 16px;
+    }
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 28px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f5f5f5;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #C9A84C;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-content {
+      flex: 1;
+      padding-top: 4px;
+    }
+    .divider {
+      height: 1px;
+      background: #f0ebe0;
+      margin: 48px 0;
+    }
+    a {
+      color: #C9A84C;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .badge {
+      display: inline-block;
+      background: #f9f6ef;
+      border: 1px solid #e8e0cf;
+      color: #8b7335;
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .header-bar {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .header-bar h1 {
+      margin-bottom: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+    }
+    th {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header-bar">
+      <h1>Maison Paysage</h1>
+      <p class="subtitle">Premium Landscaping Next.js Template — Documentation</p>
+      <div>
+        <span class="badge">Next.js 15+</span>
+        <span class="badge">TypeScript</span>
+        <span class="badge">Tailwind CSS</span>
+        <span class="badge">Three.js</span>
+        <span class="badge">GSAP</span>
+        <span class="badge">Framer Motion</span>
+        <span class="badge">Resend</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 1. INTRODUCTION -->
+    <h2><span class="num">1.</span> Introduction</h2>
+    <p><strong>Maison Paysage</strong> is a cinematic, high-end landscaping and outdoor design template built for agencies, landscape architects, and premium service providers.</p>
+    <p><strong>What's included:</strong></p>
+    <ul>
+      <li>Full Next.js 15+ source code (TypeScript)</li>
+      <li>Three.js animated depth background</li>
+      <li>GSAP scroll animations throughout</li>
+      <li>Framer Motion micro-interactions</li>
+      <li>Contact form with Resend email integration</li>
+      <li>Complete documentation (this file)</li>
+      <li>GPT Image 2 generated demo images (commercially licensed, free to use and modify)</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- 2. REQUIREMENTS -->
+    <h2><span class="num">2.</span> Requirements</h2>
+    <ul>
+      <li><strong>Node.js 18+</strong> (LTS recommended)</li>
+      <li><strong>npm</strong> or <strong>yarn</strong> package manager</li>
+      <li>A <strong>Vercel account</strong> (free tier works) for deployment</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- 3. INSTALLATION -->
+    <h2><span class="num">3.</span> Installation</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">Extract the ZIP file to your preferred location.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">Open a terminal in the project folder.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">Install dependencies:</div>
+    </div>
+    <pre>npm install</pre>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">Copy the environment file:</div>
+    </div>
+    <pre>cp .env.example .env.local</pre>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">Fill in your environment variables in <code>.env.local</code> (see section 4.7 for Resend setup).</div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-content">Start the development server:</div>
+    </div>
+    <pre>npm run dev</pre>
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-content">Open <a href="http://localhost:3000">http://localhost:3000</a> in your browser.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 4. CUSTOMIZATION -->
+    <h2><span class="num">4.</span> Customization</h2>
+
+    <h3>4.1 Changing Colors</h3>
+    <p>All colors are controlled via CSS custom properties in <code>app/globals.css</code>:</p>
+    <pre>:root {
+  --color-primary: #d5b46b;    /* Warm gold — buttons, accents */
+  --color-secondary: #ffffff;  /* White — text on dark */
+  --color-accent: #d5b46b;     /* Accent — selection, scrollbar */
+  --color-background: #000000; /* Page background */
+  --color-text: #ffffff;       /* Default text color */
+}</pre>
+    <p>Change <code>--color-primary</code> from the warm gold (<code>#d5b46b</code>) to any hex value to transform the entire color scheme. The gold accent color is also referenced directly as <code>#d5b46b</code> in some component styles — search and replace if you want a different accent.</p>
+
+    <h3>4.2 Changing the Logo</h3>
+    <p>The logo placeholder is located in <code>app/page.tsx</code> inside the <code>SiteHeader</code> component.</p>
+    <p>Replace the SVG placeholder with your own logo:</p>
+    <pre>&lt;img src="/images/logo.png" alt="Your Company" height="32" /&gt;</pre>
+    <p>Or paste your own SVG code directly in place of the placeholder SVG.</p>
+
+    <h3>4.3 Changing Images</h3>
+    <p>All images are in the <code>/public/images/</code> folder. Replace any image file with your own — keep the same filename to avoid broken references.</p>
+    <p>Image files used:</p>
+    <ul>
+      <li><code>service-01.jpg</code>, <code>service-02.jpg</code>, <code>service-03.jpg</code> — Service cards</li>
+      <li><code>project-01.jpg</code> through <code>project-05.jpg</code> — Project cards</li>
+      <li><code>process-01.jpg</code> through <code>process-04.jpg</code> — Process step backgrounds</li>
+      <li><code>terrace/main.jpg</code> — Hero background/preload image</li>
+    </ul>
+    <p>All demo images were generated with GPT Image 2 and are commercially licensed — free to use and modify.</p>
+
+    <h3>4.4 Changing Text Content</h3>
+    <p>All text content lives in <code>app/page.tsx</code>. The page is organized into clearly labeled data arrays at the top of the file:</p>
+    <ul>
+      <li><code>STATS</code> — Hero statistics</li>
+      <li><code>SERVICE_CARDS</code> — Services section</li>
+      <li><code>PROJECT_CARDS</code> — Projects section</li>
+      <li><code>PROCESS_STEPS</code> — Approach/process section</li>
+    </ul>
+    <p>Find the text string you want to change and edit it directly. No CMS required.</p>
+
+    <h3>4.5 Three.js Background Scene</h3>
+    <p>The animated parallax depth background is in <code>components/DepthBackground.tsx</code>. It creates a subtle mouse-tracking and scroll-reactive depth effect using CSS transforms driven by vanilla JS (no heavy Three.js scene graph).</p>
+    <p>To adjust the parallax intensity: find the multiplier values (e.g., <code>0.32</code>) and increase/decrease them.</p>
+    <p>To disable the background: remove the <code>&lt;DepthBackground /&gt;</code> component from <code>app/page.tsx</code> and optionally replace with a static gradient or image.</p>
+
+    <h3>4.6 GSAP Scroll Animations</h3>
+    <p>Scroll animations are handled by GSAP ScrollTrigger in the <code>useEffect</code> block of <code>app/page.tsx</code>.</p>
+    <p>Key configuration points:</p>
+    <ul>
+      <li><strong>Animation speed:</strong> Change the <code>duration</code> property (in seconds). Default is <code>0.8</code> for sections, <code>0.55</code> for cards.</li>
+      <li><strong>When animation triggers:</strong> Change the <code>start</code> property in ScrollTrigger config. Example: <code>start: "top 82%"</code> means the animation triggers when the element's top reaches 82% of the viewport height.</li>
+      <li><strong>Stagger delay:</strong> The <code>stagger: 0.1</code> value controls the delay between each card's entrance animation.</li>
+    </ul>
+
+    <h3>4.7 Contact Form Setup</h3>
+    <p>The contact form uses <a href="https://resend.com">Resend</a> to send emails.</p>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">Create a free account at <a href="https://resend.com">resend.com</a></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">Get your API key from the Resend dashboard</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">Add to <code>.env.local</code>:</div>
+    </div>
+    <pre>RESEND_API_KEY=re_your_api_key_here
+CONTACT_EMAIL=your@email.com</pre>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">Restart the dev server: <code>npm run dev</code></div>
+    </div>
+    <p>The form will now send submissions to your email address. Rate limiting (3 requests per 10 minutes per IP) is built in.</p>
+
+    <div class="divider"></div>
+
+    <!-- 5. DEPLOYMENT -->
+    <h2><span class="num">5.</span> Deployment on Vercel (Recommended)</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">Push your project to a GitHub repository.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">Go to <a href="https://vercel.com">vercel.com</a> and import your repository.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">In Project Settings → Environment Variables, add your <code>.env.local</code> values.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">Click <strong>Deploy</strong>.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">Your site will be live in ~60 seconds.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 6. LANGUAGE -->
+    <h2><span class="num">6.</span> Changing the Language</h2>
+    <p>The template ships in English. To add French (or any language):</p>
+    <ol>
+      <li>Install next-intl: <code>npm install next-intl</code> (already included)</li>
+      <li>Create translation files in <code>/messages/en.json</code> and <code>/messages/fr.json</code></li>
+      <li>See next-intl documentation: <a href="https://next-intl-docs.vercel.app">next-intl-docs.vercel.app</a></li>
+    </ol>
+    <p>Or simply edit the text strings directly in <code>app/page.tsx</code> — all content is in one file for easy editing.</p>
+
+    <div class="divider"></div>
+
+    <!-- 7. CREDITS -->
+    <h2><span class="num">7.</span> Credits &amp; Licenses</h2>
+    <table>
+      <tr><th>Library</th><th>License</th><th>Website</th></tr>
+      <tr><td>Next.js</td><td>MIT</td><td><a href="https://nextjs.org">nextjs.org</a></td></tr>
+      <tr><td>GSAP</td><td>Standard GreenSock License</td><td><a href="https://gsap.com/licensing">gsap.com/licensing</a></td></tr>
+      <tr><td>Three.js</td><td>MIT</td><td><a href="https://threejs.org">threejs.org</a></td></tr>
+      <tr><td>Tailwind CSS</td><td>MIT</td><td><a href="https://tailwindcss.com">tailwindcss.com</a></td></tr>
+      <tr><td>Framer Motion</td><td>MIT</td><td><a href="https://www.framer.com/motion">framer.com/motion</a></td></tr>
+      <tr><td>Resend</td><td>MIT</td><td><a href="https://resend.com">resend.com</a></td></tr>
+      <tr><td>Lenis (smooth scroll)</td><td>MIT</td><td><a href="https://lenis.darkroom.engineering">lenis.darkroom.engineering</a></td></tr>
+    </table>
+    <p><strong>Demo images:</strong> Generated with GPT Image 2 (OpenAI) — commercially licensed, free to use and modify.</p>
+    <p><strong>Fonts:</strong> Cormorant Garamond &amp; Inter — Google Fonts, SIL Open Font License.</p>
+
+    <div class="divider"></div>
+
+    <!-- 8. SUPPORT -->
+    <h2><span class="num">8.</span> Support</h2>
+    <p>For support, please use the ThemeForest comments section on the item page.</p>
+    <p>Response within 24–48 hours.</p>
+
+    <div class="divider"></div>
+
+    <p style="text-align: center; color: #999; font-size: 0.9rem; margin-top: 40px;">
+      Maison Paysage — Premium Landscaping Next.js Template<br>
+      Thank you for your purchase!
+    </p>
+
+  </div>
+</body>
+</html>

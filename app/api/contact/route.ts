@@ -1,3 +1,4 @@
+// Configure RESEND_API_KEY and CONTACT_EMAIL in your .env.local file
 import { NextRequest, NextResponse } from 'next/server'
 import { resend } from '@/lib/resend'
 
@@ -68,9 +69,9 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const toEmail = process.env.CONTACT_EMAIL_TO
+  const toEmail = process.env.CONTACT_EMAIL
   if (!toEmail) {
-    console.error('CONTACT_EMAIL_TO is not configured.')
+    console.error('CONTACT_EMAIL is not configured.')
     return NextResponse.json(
       { error: 'Server configuration error.' },
       { status: 500 }

@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     default: 'Maison Paysage',
     template: '%s | Maison Paysage',
   },
-  description: "Jardins & terrasses d'exception. Conception paysagère haut de gamme.",
+  description: 'Gardens & terraces of exception. Premium landscape design.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  openGraph: { type: 'website', locale: 'fr_FR', siteName: 'Maison Paysage' },
+  openGraph: { type: 'website', locale: 'en_US', siteName: 'Maison Paysage' },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
 }
@@ -33,7 +33,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="fr"
+      lang="en"
       className={`${displayFont.variable} ${bodyFont.variable} h-full antialiased`}
     >
       <head>

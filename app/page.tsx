@@ -63,8 +63,8 @@ function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navLinks = [
     { href: '#services', label: 'Services' },
-    { href: '#projects', label: 'Projets' },
-    { href: '#process', label: 'Approche' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#process', label: 'Approach' },
     { href: '#contact', label: 'Contact' },
   ];
   return (
@@ -76,9 +76,12 @@ function SiteHeader() {
       >
         {/* Logo */}
         <div className="absolute left-5 min-w-0 md:left-7">
-          <span className="block truncate text-[13px] font-bold uppercase tracking-[0.18em] text-white">
-            Maison Paysage
-          </span>
+          <div className="flex items-center gap-2">
+            <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="118" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3"/>
+              <text x="60" y="21" textAnchor="middle" fontFamily="sans-serif" fontSize="10" fill="currentColor" opacity="0.6">YOUR LOGO</text>
+            </svg>
+          </div>
         </div>
 
         {/* Nav — desktop */}
@@ -97,7 +100,7 @@ function SiteHeader() {
                        transition-opacity md:flex whitespace-nowrap"
             style={{ minWidth: 148, paddingInline: 28 }}
           >
-            Rendez-vous
+            Book a Call
           </a>
           <button
             onClick={() => setMenuOpen((o) => !o)}
@@ -130,7 +133,7 @@ function SiteHeader() {
             className="mt-1 block rounded-full bg-[#d5b46b] text-center text-sm font-semibold text-black"
             style={{ padding: '14px 20px' }}
           >
-            Rendez-vous
+            Book a Call
           </a>
         </div>
       )}
@@ -140,7 +143,7 @@ function SiteHeader() {
 
 // ── marquee ───────────────────────────────────────────────────────────────────
 
-const MARQUEE_TEXT = 'JARDINS · TERRASSES · PAYSAGE · LUMIÈRE · PIERRE NATURELLE · ESPACES OUTDOOR · ';
+const MARQUEE_TEXT = 'GARDENS · TERRACES · LANDSCAPE · LIGHT · NATURAL STONE · OUTDOOR SPACES · ';
 
 function Marquee() {
   const cls = 'text-[11px] font-semibold tracking-[0.32em] text-white/50 whitespace-nowrap';
@@ -156,45 +159,45 @@ function Marquee() {
 // ── data ──────────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { label: '+15 ans', text: "d'expérience", countTo: 15 },
-  { label: 'Terrasses', text: 'Jardins, lumière', countTo: null },
-  { label: 'Suivi', text: 'premium & discret', countTo: null },
+  { label: '+15 Years', text: 'of Experience', countTo: 15 },
+  { label: 'Terraces', text: 'Gardens & Light', countTo: null },
+  { label: 'Follow-up', text: 'Premium & Discreet', countTo: null },
 ];
 
 const SERVICE_CARDS = [
   {
-    title: 'Terrasses en pierre',
-    body: 'Conception et pose de pavés, dalles calcaires, granit et pierre naturelle taillée sur mesure.',
-    detail: 'Nous sélectionnons chaque pierre à la carrière pour garantir couleur, texture et durabilité. Joints, calepinage et pente d\'écoulement sont étudiés avant la pose.',
+    title: 'Stone Terraces',
+    body: 'Design and laying of custom-cut cobblestones, limestone slabs, granite and natural stone.',
+    detail: 'We select each stone at the quarry to guarantee color, texture and durability. Joints, layout patterns and drainage slopes are studied before installation.',
     image: '/images/service-01.jpg',
   },
   {
-    title: 'Jardins paysagers',
-    body: 'Plantations, massifs et arbres — un végétal pensé pour chaque exposition.',
-    detail: 'Espèces méditerranéennes, persistantes ou à feuilles caduques : chaque plante est choisie pour son comportement réel dans votre sol et sous votre climat.',
+    title: 'Landscaped Gardens',
+    body: 'Planting, beds and trees — greenery designed for every exposure.',
+    detail: 'Mediterranean, evergreen or deciduous species: each plant is chosen for its real behavior in your soil and under your climate.',
     image: '/images/service-02.jpg',
   },
   {
-    title: 'Éclairage & entretien',
-    body: 'Mise en lumière basse tension, arrosage automatisé et suivi saisonnier.',
-    detail: 'Spots encastrés, guirlandes et projections sur végétaux, combinés à un système d\'arrosage goutte-à-goutte piloté depuis votre téléphone.',
+    title: 'Lighting & Maintenance',
+    body: 'Low-voltage lighting, automated irrigation and seasonal follow-up.',
+    detail: 'Recessed spotlights, string lights and plant projections, combined with a drip irrigation system controlled from your phone.',
     image: '/images/service-03.jpg',
   },
 ];
 
 const PROJECT_CARDS = [
-  { num: '01', title: 'Villa privée', category: 'Terrasse calcaire & jardin méditerranéen', image: '/images/project-01.jpg' },
-  { num: '02', title: 'Maison contemporaine', category: 'Patio, lumière & plantations', image: '/images/project-02.jpg' },
-  { num: '03', title: 'Domaine viticole', category: 'Allées en gravier, haies taillées & bassins', image: '/images/project-03.jpg' },
-  { num: '04', title: 'Résidence balnéaire', category: 'Bois exotique, dunes végétalisées & plage privée', image: '/images/project-04.jpg' },
-  { num: '05', title: 'Penthouse parisien', category: 'Terrasse rooftop, minéral & jardins en bacs', image: '/images/project-05.jpg' },
+  { num: '01', title: 'Private Villa', category: 'Limestone terrace & Mediterranean garden', image: '/images/project-01.jpg' },
+  { num: '02', title: 'Contemporary Home', category: 'Patio, lighting & planting', image: '/images/project-02.jpg' },
+  { num: '03', title: 'Wine Estate', category: 'Gravel alleys, trimmed hedges & ponds', image: '/images/project-03.jpg' },
+  { num: '04', title: 'Seaside Residence', category: 'Exotic wood, planted dunes & private beach', image: '/images/project-04.jpg' },
+  { num: '05', title: 'Parisian Penthouse', category: 'Rooftop terrace, mineral & planter gardens', image: '/images/project-05.jpg' },
 ];
 
 const PROCESS_STEPS = [
-  { num: '01', title: 'Étude du lieu', body: "Analyse du terrain, de l'exposition et des usages souhaités.", image: '/images/process-01.jpg' },
-  { num: '02', title: 'Plan matière', body: 'Choix des pierres, végétaux et matériaux selon le projet.', image: '/images/process-02.jpg' },
-  { num: '03', title: 'Réalisation', body: 'Chantier dirigé par nos artisans, dans les délais convenus.', image: '/images/process-03.jpg' },
-  { num: '04', title: 'Suivi', body: 'Entretien saisonnier et accompagnement au fil des saisons.', image: '/images/process-04.jpg' },
+  { num: '01', title: 'Site Study', body: 'Analysis of the land, exposure and intended uses.', image: '/images/process-01.jpg' },
+  { num: '02', title: 'Material Plan', body: 'Selection of stones, plants and materials tailored to the project.', image: '/images/process-02.jpg' },
+  { num: '03', title: 'Construction', body: 'Project managed by our craftsmen, delivered on time.', image: '/images/process-03.jpg' },
+  { num: '04', title: 'Follow-up', body: 'Seasonal maintenance and ongoing support through the seasons.', image: '/images/process-04.jpg' },
 ];
 
 // ── shared btn classes ────────────────────────────────────────────────────────
@@ -258,7 +261,7 @@ export default function Page() {
     gsap.to(obj, {
       val: 15, duration: 2, ease: 'power2.out', delay: 0.6,
       onUpdate: () => {
-        if (statCountRef.current) statCountRef.current.textContent = `+${Math.round(obj.val)} ans`;
+        if (statCountRef.current) statCountRef.current.textContent = `+${Math.round(obj.val)} Years`;
       },
     });
 
@@ -274,22 +277,22 @@ export default function Page() {
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <OverlaySection id="hero">
         <div className="hero-content max-w-[680px] mx-auto pt-20 text-center">
-          <p className="eyebrow">JARDINS &amp; TERRASSES D'EXCEPTION</p>
+          <p className="eyebrow">GARDENS &amp; TERRACES OF EXCEPTION</p>
 
           <h1 className="headline-xl" style={{ maxWidth: '100%' }}>
-            Des extérieurs pensés comme des lieux de vie.
+            Outdoor spaces designed as living places.
           </h1>
 
           <p className="body-copy" style={{ maxWidth: '100%' }}>
-            Terrasses en pierre, jardins paysagers et espaces outdoor haut de gamme.
+            Stone terraces, landscaped gardens and premium outdoor spaces.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <MagneticButton>
-              <button className={btnPrimary} style={{ paddingInline: '52px' }}>Découvrir les projets</button>
+              <button className={btnPrimary} style={{ paddingInline: '52px' }}>Discover Projects</button>
             </MagneticButton>
             <MagneticButton>
-              <a href="#contact" className={btnSecondary} style={{ paddingInline: '52px' }}>Nous contacter</a>
+              <a href="#contact" className={btnSecondary} style={{ paddingInline: '52px' }}>Contact Us</a>
             </MagneticButton>
           </div>
 
@@ -297,7 +300,7 @@ export default function Page() {
             {STATS.map((s) => (
               <div key={s.label} className="border-l border-white/20 pl-5 text-center">
                 <p className="whitespace-nowrap text-sm font-semibold text-[#d5b46b]">
-                  {s.countTo ? <span ref={statCountRef}>+0 ans</span> : s.label}
+                  {s.countTo ? <span ref={statCountRef}>+0 Years</span> : s.label}
                 </p>
                 <p className="mt-0.5 whitespace-nowrap text-xs text-white/55">{s.text}</p>
               </div>
@@ -311,11 +314,11 @@ export default function Page() {
       {/* ── SERVICES ─────────────────────────────────────────────────────── */}
       <OverlaySection id="services">
         <div className="section-content max-w-[860px] text-center">
-          <p className="eyebrow">SAVOIR-FAIRE</p>
-          <h2 className="headline-lg" style={{ maxWidth: '100%' }}>Une signature complète, du plan à la pierre.</h2>
+          <p className="eyebrow">EXPERTISE</p>
+          <h2 className="headline-lg" style={{ maxWidth: '100%' }}>A complete signature, from plan to stone.</h2>
           <p className="body-copy" style={{ maxWidth: '100%' }}>
-            Conception paysagère, réalisation minérale, plantations, éclairage,
-            arrosage et entretien discret.
+            Landscape design, mineral construction, planting, lighting,
+            irrigation and discreet maintenance.
           </p>
 
           <div className="mt-12 grid gap-5 md:grid-cols-3 stagger-cards">
@@ -341,7 +344,7 @@ export default function Page() {
                   <div className="service-expand">
                     <div>
                       <p className="mt-3 text-sm leading-relaxed text-white/45">{c.detail}</p>
-                      <p className="mt-4 text-xs font-semibold tracking-[0.18em] text-[#d5b46b]">En savoir plus →</p>
+                      <p className="mt-4 text-xs font-semibold tracking-[0.18em] text-[#d5b46b]">Learn more →</p>
                     </div>
                   </div>
                 </div>
@@ -355,11 +358,11 @@ export default function Page() {
       <OverlaySection id="projects">
         <div className="section-content max-w-[1100px]">
           <div className="text-center">
-            <p className="eyebrow">PROJETS</p>
-            <h2 className="headline-lg" style={{ maxWidth: '100%' }}>Chaque projet commence par une atmosphère.</h2>
+            <p className="eyebrow">PROJECTS</p>
+            <h2 className="headline-lg" style={{ maxWidth: '100%' }}>Every project begins with an atmosphere.</h2>
             <p className="body-copy" style={{ maxWidth: '100%' }}>
-              Nous composons les matières, les volumes et les usages pour créer des
-              espaces extérieurs sobres, durables et désirables.
+              We compose materials, volumes and uses to create refined,
+              lasting and desirable outdoor spaces.
             </p>
           </div>
 
@@ -422,10 +425,10 @@ export default function Page() {
       <OverlaySection id="process">
         <div className="section-content max-w-[900px]">
           <div className="text-center">
-            <p className="eyebrow">APPROCHE</p>
-            <h2 className="headline-lg" style={{ maxWidth: '100%' }}>Étudier. Concevoir. Réaliser. Entretenir.</h2>
+            <p className="eyebrow">APPROACH</p>
+            <h2 className="headline-lg" style={{ maxWidth: '100%' }}>Study. Design. Build. Maintain.</h2>
             <p className="body-copy" style={{ maxWidth: '100%' }}>
-              Un accompagnement clair, du premier rendez-vous à la saison suivante.
+              Clear guidance, from the first meeting to the following season.
             </p>
           </div>
 
@@ -472,20 +475,20 @@ export default function Page() {
         <div className="section-content max-w-[720px]">
           <div className="text-center">
             <p className="eyebrow">CONTACT</p>
-            <h2 className="headline-lg" style={{ maxWidth: '100%' }}>Donnons forme à votre prochain extérieur.</h2>
+            <h2 className="headline-lg" style={{ maxWidth: '100%' }}>Let&apos;s shape your next outdoor space.</h2>
             <p className="body-copy" style={{ maxWidth: '100%' }}>
-              Décrivez-nous le lieu, l'usage souhaité et le niveau d'accompagnement
-              attendu. Nous revenons vers vous avec une première lecture claire du projet.
+              Tell us about the location, intended use and level of support you need.
+              We&apos;ll come back to you with a clear first reading of the project.
             </p>
           </div>
 
           <div className="mt-12 rounded-[32px] border border-white/15 bg-white/[0.08] shadow-2xl backdrop-blur-2xl" style={{ padding: '32px' }}>
             <h3 className="mb-6 text-center text-[15px] font-semibold text-white">
-              Demande de rendez-vous
+              Book a Consultation
             </h3>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {(['Nom', 'Email', 'Téléphone', 'Type de projet'] as const).map((label) => (
+              {(['Name', 'Email', 'Phone', 'Project Type'] as const).map((label) => (
                 <input
                   key={label}
                   type="text"
@@ -504,13 +507,13 @@ export default function Page() {
                            bg-[#d5b46b] text-sm font-semibold text-black
                            hover:opacity-90 transition-opacity sm:col-span-2"
               >
-                Envoyer la demande
+                Send Request
               </button>
             </div>
 
             <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-1">
-              <p className="text-xs text-white/40">Réponse sous 24h ouvrées</p>
-              <p className="text-xs text-white/40">Projets résidentiels premium uniquement</p>
+              <p className="text-xs text-white/40">Response within 24 business hours</p>
+              <p className="text-xs text-white/40">Premium residential projects only</p>
             </div>
           </div>
         </div>

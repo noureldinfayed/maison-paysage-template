@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 import { cn } from '@/lib/utils'
 
@@ -13,7 +14,8 @@ const SCROLL_THRESHOLD = 60 // px before navbar becomes opaque
 const NAV_LINKS = [
   { label: 'Home', href: '#' },
   { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Approach', href: '#process' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -57,16 +59,16 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 md:h-20">
 
             {/* ── LOGO SLOT ─────────────────────────────────────────────── */}
-            <a
+            <Link
               href="/"
               className="flex items-center gap-2 flex-shrink-0"
               aria-label="Go to homepage"
             >
-              {/* Replace with <Image> logo or SVG component */}
-              <span className="font-display font-bold text-xl text-primary tracking-tight">
-                [LOGO]
-              </span>
-            </a>
+              <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="118" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3"/>
+                <text x="60" y="21" textAnchor="middle" fontFamily="sans-serif" fontSize="10" fill="currentColor" opacity="0.6">YOUR LOGO</text>
+              </svg>
+            </Link>
 
             {/* ── DESKTOP NAV LINKS ─────────────────────────────────────── */}
             <nav

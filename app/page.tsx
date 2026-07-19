@@ -215,6 +215,7 @@ export default function Page() {
   const statCountRef = useRef<HTMLSpanElement>(null);
   const [previewSrc, setPreviewSrc] = useState<string | null>(null);
   const [tappedProcess, setTappedProcess] = useState<number | null>(null);
+  const touchRef = useRef(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -296,7 +297,7 @@ export default function Page() {
             </MagneticButton>
           </div>
 
-          <div className="mt-14 flex flex-wrap justify-center gap-x-8 gap-y-5">
+          <div className="mt-14 mb-8 flex flex-wrap justify-center gap-x-8 gap-y-5">
             {STATS.map((s) => (
               <div key={s.label} className="border-l border-white/20 pl-5 text-center">
                 <p className="whitespace-nowrap text-sm font-semibold text-[#d5b46b]">
@@ -374,9 +375,10 @@ export default function Page() {
                   key={c.num}
                   className="glass-card flex items-center gap-5 cursor-pointer"
                   style={{ padding: '20px' }}
-                  onMouseEnter={() => setPreviewSrc(c.image)}
-                  onMouseLeave={() => setPreviewSrc(null)}
-                  onClick={() => setPreviewSrc(prev => prev === c.image ? null : c.image)}
+                  onTouchStart={() => { touchRef.current = true; }}
+                  onMouseEnter={() => { if (!touchRef.current) setPreviewSrc(c.image); }}
+                  onMouseLeave={() => { if (!touchRef.current) setPreviewSrc(null); }}
+                  onClick={() => setPreviewSrc(c.image)}
                 >
                   <span className="w-9 shrink-0 font-display text-xl font-semibold text-[#d5b46b]">
                     {c.num}
@@ -482,7 +484,7 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="mt-12 rounded-[32px] border border-white/15 bg-white/[0.08] shadow-2xl backdrop-blur-2xl" style={{ padding: '32px' }}>
+          <div className="mt-12 rounded-[32px] border border-white/15 bg-white/[0.08] shadow-2xl backdrop-blur-2xl" style={{ padding: '32px 32px 48px' }}>
             <h3 className="mb-6 text-center text-[15px] font-semibold text-white">
               Book a Consultation
             </h3>

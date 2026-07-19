@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   * {
     word-break: normal;
     overflow-wrap: normal;
@@ -8,17 +16,6 @@
 }
 
 @config "../tailwind.config.ts";
-
-/* ============================================================
-   CSS RESET
-   ============================================================ */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 /* ============================================================
    CSS CUSTOM PROPERTY SLOTS

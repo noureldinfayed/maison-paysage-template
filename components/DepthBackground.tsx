@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import ParticleField from '@/components/ParticleField';
 
 export default function DepthBackground() {
   const layerRef = useRef<HTMLDivElement>(null);
@@ -18,8 +19,8 @@ export default function DepthBackground() {
     function tick() {
       rafId = 0;
       if (!el) return;
-      cx = lerp(cx, mouseX, 0.08);
-      cy = lerp(cy, mouseY + scrollShift, 0.08);
+      cx = lerp(cx, mouseX, 0.055);
+      cy = lerp(cy, mouseY + scrollShift, 0.055);
       el.style.transform = `translate(${cx.toFixed(2)}px,${cy.toFixed(2)}px)`;
       const converged =
         Math.abs(mouseX - cx) < 0.1 &&
@@ -30,29 +31,29 @@ export default function DepthBackground() {
     const schedule = () => { if (!rafId) rafId = requestAnimationFrame(tick); };
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseX = (e.clientX / innerWidth  - 0.5) * -68;
-      mouseY = (e.clientY / innerHeight - 0.5) * -44;
+      mouseX = (e.clientX / innerWidth  - 0.5) * -110;
+      mouseY = (e.clientY / innerHeight - 0.5) * -72;
       schedule();
     };
 
     const onTouchMove = (e: TouchEvent) => {
       const t = e.touches[0];
-      mouseX = (t.clientX / innerWidth  - 0.5) * -68;
-      mouseY = (t.clientY / innerHeight - 0.5) * -44;
+      mouseX = (t.clientX / innerWidth  - 0.5) * -110;
+      mouseY = (t.clientY / innerHeight - 0.5) * -72;
       schedule();
     };
 
     const onOrientation = (e: DeviceOrientationEvent) => {
       if (e.gamma != null && e.beta != null) {
-        mouseX = Math.max(-1, Math.min(1, e.gamma / 30)) * -68;
-        mouseY = Math.max(-1, Math.min(1, (e.beta - 30) / 30)) * -44;
+        mouseX = Math.max(-1, Math.min(1, e.gamma / 25)) * -110;
+        mouseY = Math.max(-1, Math.min(1, (e.beta - 30) / 25)) * -72;
         schedule();
       }
     };
 
     const onScroll = () => {
       const progress = scrollY / Math.max(1, document.body.scrollHeight - innerHeight);
-      scrollShift = progress * -100;
+      scrollShift = progress * -160;
       schedule();
     };
 
@@ -72,8 +73,8 @@ export default function DepthBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
-      {/* Oversized by 6% on each side so edge never shows during parallax pan */}
-      <div ref={layerRef} style={{ position: 'absolute', inset: '-13%', willChange: 'transform' }}>
+      {/* Oversized to accommodate the aggressive parallax range */}
+      <div ref={layerRef} style={{ position: 'absolute', inset: '-18%', willChange: 'transform' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/terrace/main.jpg"
@@ -89,6 +90,8 @@ export default function DepthBackground() {
       <div className="pointer-events-none absolute inset-0 bg-black/15" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48"
         style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55), transparent)' }} />
+      {/* Three.js particle field — reacts aggressively to mouse */}
+      <ParticleField />
     </div>
   );
 }
